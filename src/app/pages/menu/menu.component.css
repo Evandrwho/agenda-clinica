@@ -1,0 +1,40 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+
+  width: 200px;
+  background: #037df3;
+  color: white;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.icon-nav-bar {
+  align-content: end;
+  height: 2em;
+  width: 2em;
+  margin: auto 2em;
+}
+
+.nome-proprietario {
+  margin-right: 0px;
+  margin-left: auto;
+  /*
+     margin: 0 100px 0 100px;
+     */
+}
+
+.tema-cor-azul{
+  background: #037df3;
+  color: white;
+}
