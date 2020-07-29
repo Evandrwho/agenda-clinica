@@ -1,0 +1,44 @@
+<h1>Agendar consulta</h1>
+<form action="#" [formGroup]="formAgendaCosulta">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="nome" type="text" class="validate">
+      <label class="active" for="nome">Nome</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="sobrenome" type="text" class="validate">
+      <label class="active" for="sobrenome">Sobrenome</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="telefone" type="text" class="validate">
+      <label class="active" for="telefone">Telefone</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field input-group col s6">
+      <input id="data" class="form-control" type="text" bsDatepicker
+             [bsConfig]="{ isAnimated: true, dateInputFormat: 'D MMMM, YYYY', containerClass: 'theme-dark-blue',adaptivePosition:true }">
+      <label for="data" class="active">Data Consulta</label>
+    </div>
+    <div class="input-field col s6">
+      <input id="time" type="time" placeholder="" #time/>
+      <label for="time">Horário da Live</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <button mat-button class="btn-azul col-md-6">Finalizar Agendamento</button>
+      <button mat-button class="btn-vermelho col-md-6">Cancelar</button>
+    </div>
+  </div>
+
+</form>
+
+
