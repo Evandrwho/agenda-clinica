@@ -20,12 +20,28 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select'; // a plugin
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CalendarModule} from 'primeng';
+import {BsDatepickerConfig, BsDatepickerModule, BsLocaleService} from 'ngx-bootstrap/datepicker'; // a plugin
 
+import { defineLocale } from 'ngx-bootstrap/chronos';
+defineLocale('pt-br', ptBrLocale);
+
+import { ptBrLocale } from 'ngx-bootstrap/locale';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin
 ]);
+
+export function getDatepickerConfig(): BsDatepickerConfig {
+  return Object.assign(new BsDatepickerConfig(), {
+    dateInputFormat: 'YYYY-MM-DD'
+  });
+}
 
 @NgModule({
   declarations: [
@@ -49,9 +65,16 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatMenuModule,
     FullCalendarModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    CalendarModule,
+    BsDatepickerModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    BsLocaleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

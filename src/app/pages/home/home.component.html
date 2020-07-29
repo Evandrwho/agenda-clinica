@@ -1,21 +1,69 @@
-<div >
+<div>
+  <br>
   <div class="row col-md-12">
     <div class="col-md-8">
-<!--
-      <div id='calendar'></div>
--->
-      <full-calendar [options]="calendarOptions" ></full-calendar>
+      <!--
+            <div id='calendar'></div>
+      -->
+      <full-calendar [options]="calendarOptions"></full-calendar>
     </div>
-    <div class="col-md-4">
-      <div class="row">
-        <div class="input-field col s6">
-          <input value="Alvin" id="first_name2" type="text" class="validate">
-          <label class="active" for="first_name2">First Name</label>
+
+    <div class="col-md-4 ">
+      <br>
+      <h1>Agendar consulta</h1>
+      <form action="#" [formGroup]="formAgendaCosulta">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="nome" type="text" class="validate">
+            <label class="active" for="nome">Nome</label>
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="sobrenome" type="text" class="validate">
+            <label class="active" for="sobrenome">Sobrenome</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="telefone" type="text" class="validate">
+            <label class="active" for="telefone">Telefone</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field input-group col s6">
+            <input class="form-control" type="text" bsDatepicker
+                   [bsConfig]="{ isAnimated: true, dateInputFormat: 'D MMMM, YYYY', containerClass: 'theme-dark-blue',adaptivePosition:true }">
+            <label class="active">Data Consulta</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="time" type="time" placeholder="" #time/>
+            <label for="time">Horário da Live</label>
+          </div>
+        </div>
+
+        <div class="row">
+              <div class="col-md-12">
+                <button mat-button class="btn-azul col-md-6">Finalizar Agendamento</button>
+                <button mat-button class="btn-vermelho col-md-6">Cancelar</button>
+              </div>
+        </div>
+
+      </form>
+
+
     </div>
 
 
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });
+</script>
 

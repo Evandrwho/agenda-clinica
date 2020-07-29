@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular';
+import {Component, OnInit} from '@angular/core';
+import {CalendarOptions} from '@fullcalendar/angular';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,6 @@ import { CalendarOptions } from '@fullcalendar/angular';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
 
 
   calendarOptions: CalendarOptions = {
@@ -22,8 +23,19 @@ export class HomeComponent implements OnInit {
     },
   };
   private calendarEl: HTMLElement;
+  formAgendaCosulta: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder,
+              private localeService: BsLocaleService) {
+    this.localeService.use('pt-br');
+    this.formAgendaCosulta = this.formBuilder.group({
+      nome: [null],
+      sobrenome: [null],
+      telefone: [null],
+      dataConsulta: [null],
+      comentario: [null]
+    });
+  }
 
   ngOnInit(): void {
     this.calendarEl = document.getElementById('calendar');
