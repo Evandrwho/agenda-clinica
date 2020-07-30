@@ -15,13 +15,14 @@ import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { AgendaComponent } from './agenda/agenda.component';
 import { ListaEventosDiaComponent } from './lista-eventos-dia/lista-eventos-dia.component';
 import {MatTableModule} from '@angular/material/table';
-import {FullCalendarModule, ScrollPanelModule, TableModule, VirtualScrollerModule} from 'primeng';
+import {ScrollPanelModule, TableModule, VirtualScrollerModule} from 'primeng';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {FullCalendarModule} from '@fullcalendar/angular';
 
 
 
 @NgModule({
-  declarations: [CalendarioAgendaComponent, CadastroConsultaComponent, AgendaComponent],
+  declarations: [CalendarioAgendaComponent, CadastroConsultaComponent, AgendaComponent, ListaEventosDiaComponent],
   exports: [
     CalendarioAgendaComponent,
     CadastroConsultaComponent,
@@ -32,6 +33,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    ScrollPanelModule,
+    ListaEventosDiaComponent
 
   ],
   imports: [
@@ -46,7 +49,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     TableModule,
     MatPaginatorModule,
     VirtualScrollerModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    FullCalendarModule
   ],
   providers: [
     BsLocaleService]

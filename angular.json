@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "AgendaConsulta"
+  "defaultProject": "AgendaConsulta",
+  "cli": {
+    "analytics": "8d20260c-1c84-4a49-8634-928eb43e495a"
+  }
 }
