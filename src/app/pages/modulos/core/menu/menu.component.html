@@ -11,7 +11,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
      <!-- <img class="icon-nav-bar" src="./assets/icons/dentista-feminina-icon.png">-->
-      <div class="nome-proprietario">Consultório Drª Jordana Martins</div>
+      <div class="nome-proprietario"><a routerLink="/dashboard">Consultório Drª Jordana Martins</a></div>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
@@ -21,9 +21,9 @@
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="tema-cor-azul">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#" class="tema-cor-azul">Agenda</a>
-      <a mat-list-item href="#" class="tema-cor-azul">Pacientes</a>
-      <a mat-list-item href="#" class="tema-cor-azul">Financeiro</a>
+      <a mat-list-item routerLink="/agenda"  routerLinkActive="ativo" class="tema-cor-azul">Agenda</a>
+      <a mat-list-item routerLink="/pacientes"  routerLinkActive="ativo" class="tema-cor-azul">Pacientes</a>
+      <a mat-list-item routerLink="/financeiro"  routerLinkActive="ativo" class="tema-cor-azul">Financeiro</a>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>

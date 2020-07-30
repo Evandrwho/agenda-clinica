@@ -1,0 +1,28 @@
+.grid-container {
+  margin: 20px;
+}
+
+.boas-vindas-titulo {
+  font-size: 40pt;
+}
+
+.boas-vindas-texto {
+  font-size: 2em;
+}
+
+.boas-vindas-botao.btn {
+  width: 50%;
+  background: #037df3;
+  color: white;
+}
+
+.boas-vindas{
+  margin: 55% 0;
+  text-align: justify;
+}
+
+@media (max-width:768px ) {
+  .boas-vindas{
+    margin: 20px 0;
+  }
+}

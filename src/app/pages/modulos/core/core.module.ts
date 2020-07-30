@@ -12,6 +12,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {AgendaModule} from '../agenda/agenda.module';
+import {RouterModule} from '@angular/router';
+import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {SharedModule} from '../shared/shared.module';
+import { DialogAgendaConsultaComponent } from './tela-inicial/dialog-agenda-consulta/dialog-agenda-consulta.component';
 
 
 
@@ -19,7 +24,9 @@ import {AgendaModule} from '../agenda/agenda.module';
   declarations: [
     MenuComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    TelaInicialComponent,
+    DialogAgendaConsultaComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +39,9 @@ import {AgendaModule} from '../agenda/agenda.module';
     MatCardModule,
     MatMenuModule,
     AgendaModule,
+    RouterModule,
+    MatDialogModule,
+    SharedModule
   ],
   exports: [
     MatToolbarModule,
@@ -43,7 +53,9 @@ import {AgendaModule} from '../agenda/agenda.module';
     MatCardModule,
     MatMenuModule,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    TelaInicialComponent,
+    MatDialogModule
   ]
 })
 export class CoreModule { }

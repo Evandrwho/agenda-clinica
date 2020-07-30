@@ -34,7 +34,18 @@
      */
 }
 
+.nome-proprietario a{
+  color: white;
+  text-decoration: none;
+}
+
+.tema-cor-azul.ativo{
+  background: #0060cb;
+}
+
 .tema-cor-azul{
   background: #037df3;
   color: white;
 }
+
+
