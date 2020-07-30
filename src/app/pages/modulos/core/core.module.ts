@@ -55,7 +55,8 @@ import { DialogAgendaConsultaComponent } from './tela-inicial/dialog-agenda-cons
     HomeComponent,
     MenuComponent,
     TelaInicialComponent,
-    MatDialogModule
+    MatDialogModule,
+    DialogAgendaConsultaComponent
   ]
 })
 export class CoreModule { }

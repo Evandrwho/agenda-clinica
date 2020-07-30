@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalendarioAgendaComponent } from './calendario-agenda/calendario-agenda.component';
-import {FullCalendarModule} from '@fullcalendar/angular';
 import { CadastroConsultaComponent } from './cadastro-consulta/cadastro-consulta.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BsDatepickerModule, BsLocaleService} from 'ngx-bootstrap/datepicker';
@@ -14,6 +13,10 @@ defineLocale('pt-br', ptBrLocale);
 
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { AgendaComponent } from './agenda/agenda.component';
+import { ListaEventosDiaComponent } from './lista-eventos-dia/lista-eventos-dia.component';
+import {MatTableModule} from '@angular/material/table';
+import {FullCalendarModule, ScrollPanelModule, TableModule, VirtualScrollerModule} from 'primeng';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -28,7 +31,7 @@ import { AgendaComponent } from './agenda/agenda.component';
     BsDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
 
   ],
   imports: [
@@ -38,7 +41,12 @@ import { AgendaComponent } from './agenda/agenda.component';
     BsDatepickerModule.forRoot(),
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    TableModule,
+    MatPaginatorModule,
+    VirtualScrollerModule,
+    ScrollPanelModule
   ],
   providers: [
     BsLocaleService]

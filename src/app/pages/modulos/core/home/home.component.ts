@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CalendarOptions} from '@fullcalendar/angular';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 
@@ -10,18 +9,6 @@ import {BsLocaleService} from 'ngx-bootstrap/datepicker';
 })
 export class HomeComponent implements OnInit {
 
-
-  calendarOptions: CalendarOptions = {
-    locale: 'pt-br',
-    initialView: 'dayGridMonth',
-    themeSystem: 'bootstrap',
-    handleWindowResize: true,
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: ''
-    },
-  };
   private calendarEl: HTMLElement;
   formAgendaCosulta: FormGroup;
 
