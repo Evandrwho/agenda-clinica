@@ -1,4 +1,4 @@
-<h1>Agendar consulta</h1>
+
 <form action="#" [formGroup]="formAgendaCosulta">
   <div class="row">
     <div class="input-field col s12">
@@ -22,13 +22,16 @@
 
   <div class="row">
     <div class="input-field input-group col s6">
-      <input id="data" class="form-control" type="text" bsDatepicker
-             [bsConfig]="{ isAnimated: true, dateInputFormat: 'D MMMM, YYYY', containerClass: 'theme-dark-blue',adaptivePosition:true }">
-      <label for="data" class="active">Data Consulta</label>
+      <input id="dataConsulta" class="form-control" type="text" bsDatepicker
+             [bsConfig]="{ isAnimated: true, dateInputFormat: 'D MMMM, YYYY - hh:mm',
+              containerClass: 'theme-dark-blue',adaptivePosition:true }"
+      [ngModel]="dataConsulta" [ngModelOptions]="{standalone: true}"
+      >
+      <label for="dataConsulta" class="active">Data Consulta</label>
     </div>
     <div class="input-field col s6">
-      <input id="time" type="time" placeholder="" #time/>
-      <label for="time">Horário da Live</label>
+      <input id="time" type="time" placeholder="" [value]="horaConsulta" (change)="writeTime(time.value)" #time/>
+      <label for="time">Horário da Consulta</label>
     </div>
   </div>
 

@@ -1,4 +1,4 @@
-import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
+import {AfterContentChecked, Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import {CalendarOptions} from '@fullcalendar/angular';
 import {
   CalendarView,
@@ -15,8 +15,12 @@ import {
 } from 'angular-calendar-scheduler';
 import {addMonths, endOfDay} from 'date-fns';
 import {Subject} from 'rxjs';
-import {DialogAgendaConsultaComponent} from "../../core/tela-inicial/dialog-agenda-consulta/dialog-agenda-consulta.component";
-import {MatDialog} from "@angular/material/dialog";
+import {DialogAgendaConsultaComponent} from '../../core/tela-inicial/dialog-agenda-consulta/dialog-agenda-consulta.component';
+import {MatDialog} from '@angular/material/dialog';
+import {CalendarSchedulerEventComponent} from 'angular-calendar-scheduler/modules/scheduler/calendar-scheduler-event.component';
+import {EventColor} from 'calendar-utils';
+import {CalendarSchedulerEventStatus} from 'angular-calendar-scheduler/modules/scheduler/models/calendar-scheduler-event.model';
+import {CalendarioEvento} from './model/CalendarShedulerEvent';
 
 @Component({
   selector: 'app-calendario-agenda',
@@ -27,15 +31,13 @@ import {MatDialog} from "@angular/material/dialog";
     useClass: SchedulerDateFormatter
   }]
 })
-export class CalendarioAgendaComponent implements OnInit {
-  title = 'Angular Calendar Scheduler Demo';
-
+export class CalendarioAgendaComponent implements OnInit, AfterContentChecked {
   CalendarView = CalendarView;
-
   view: CalendarView = CalendarView.Week;
   viewDate: Date = new Date();
   viewDays: number = DAYS_IN_WEEK;
   refresh: Subject<any> = new Subject();
+  reload = true;
   locale = 'ept-BR';
   hourSegments = 2;
   weekStartsOn = 1;
@@ -45,13 +47,15 @@ export class CalendarioAgendaComponent implements OnInit {
   weekendDays: number[] = [0, 6];
   dayStartHour = 6;
   dayEndHour = 22;
-
   minDate: Date = new Date();
   maxDate: Date = endOfDay(addMonths(new Date(), 1));
-
+  // tslint:disable-next-line:ban-types
   dayModifier: Function;
+  // tslint:disable-next-line:ban-types
   hourModifier: Function;
+  // tslint:disable-next-line:ban-types
   segmentModifier: Function;
+  // tslint:disable-next-line:ban-types
   eventModifier: Function;
 
   prevBtnDisabled = false;
@@ -76,11 +80,15 @@ export class CalendarioAgendaComponent implements OnInit {
     }
   ];
 
-  events: CalendarSchedulerEvent[];
+  events: CalendarSchedulerEvent[] = new Array();
+  eventsAlterados: CalendarSchedulerEvent[] = new Array();
 
   @ViewChild(CalendarSchedulerViewComponent) calendarScheduler: CalendarSchedulerViewComponent;
   private name: any;
   private animal: any;
+  display: boolean;
+  displayBasic: boolean;
+  dataHoraSelecionada: Date;
 
   constructor(@Inject(LOCALE_ID) locale: string,
               private dateAdapter: DateAdapter,
@@ -113,8 +121,14 @@ export class CalendarioAgendaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createEvent(null);
     /*this.appService.getEvents(this.actions)
       .then((events: CalendarSchedulerEvent[]) => this.events = events);*/
+  }
+
+  showDialog(segment: SchedulerViewHourSegment): void {
+    this.dataHoraSelecionada = segment.date;
+    this.display = true;
   }
 
   viewDaysOptionChanged(viewDays: any): void {
@@ -154,7 +168,6 @@ export class CalendarioAgendaComponent implements OnInit {
     return /*isToday(date) ||*/ date >= this.minDate && date <= this.maxDate;
   }
 
-
   viewDaysChanged(viewDays: any): void {
     console.log('viewDaysChanged', viewDays);
     this.viewDays = viewDays;
@@ -171,21 +184,28 @@ export class CalendarioAgendaComponent implements OnInit {
   segmentClicked(action: string, segment: SchedulerViewHourSegment): void {
     console.log('segmentClicked Action', action);
     console.log('segmentClicked Segment', segment);
+    this.showDialog(segment);
+  }
+
+  private reloader(): void {
+    setTimeout(() => this.reload = false);
+    setTimeout(() => this.reload = true);
   }
 
   eventClicked(action: string, event: CalendarSchedulerEvent): void {
     console.log('eventClicked Action', action);
     console.log('eventClicked Event', event);
-    this.openDialog();
   }
 
-  openDialog(): void {
+  openDialog(segment: SchedulerViewHourSegment): void {
     const dialogRef = this.dialog.open(DialogAgendaConsultaComponent, {
       width: '600px',
-      data: {name: this.name, animal: this.animal}
+      data: {data: segment.date}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.createEvent();
+      this.reloader();
       console.log('The dialog was closed');
     });
   }
@@ -197,5 +217,21 @@ export class CalendarioAgendaComponent implements OnInit {
     ev.start = newStart;
     ev.end = newEnd;
     this.refresh.next();
+  }
+
+  createEvent(event?: CalendarSchedulerEvent): void {
+    const evento: CalendarSchedulerEvent = new CalendarioEvento();
+
+    evento.start = new Date('Tue Feb 23 2021 18:00:00 GMT-0400');
+    evento.end = new Date('Tue Feb 23 2021 20:00:00 GMT-0400');
+    evento.content = 'teste';
+    evento.title = 'testando';
+    event ? this.eventsAlterados.push(event) : this.eventsAlterados.push(evento);
+    this.dateOrViewChanged();
+
+  }
+
+  ngAfterContentChecked(): void {
+    this.events = this.eventsAlterados;
   }
 }
