@@ -1,22 +1,22 @@
 
-.modalMd{
+.mydialog{
   width: 40vw;
 }
 @media screen and (max-width: 992px) {
-  .modalMd{
-    width: 60vw;
+  .mydialog{
+    width: 50vw;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .modalMd{
+  .mydialog{
     width: 70vw;
   }
 }
 
 
 @media screen and (max-width: 600px) {
-  .modalMd{
-    width: 100vw;
+  .mydialog{
+    width: 90vw;
   }
 }

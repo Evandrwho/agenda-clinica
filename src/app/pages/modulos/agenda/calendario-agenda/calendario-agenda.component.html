@@ -89,9 +89,10 @@
   </calendar-scheduler-view>
 </div>
 
-<p-dialog header="Agendar consulta" [(visible)]="display" [modal]="true" [style]="{width: '40vw'}" [baseZIndex]="10000"
-          [draggable]="false" [resizable]="true">
-  <app-cadastro-consulta [dataConsulta]="dataHoraSelecionada"></app-cadastro-consulta>
+<p-dialog header="Agendar consulta" [(visible)]="display" [modal]="true">
+  <div class="mydialog">
+    <app-cadastro-consulta [dataConsulta]="dataHoraSelecionada"></app-cadastro-consulta>
+  </div>
 </p-dialog>
 
 

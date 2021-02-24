@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -6,7 +6,7 @@ import * as moment from 'moment';
   templateUrl: './date-util.component.html',
   styleUrls: ['./date-util.component.css']
 })
-export class DateUtilComponent{
+export class DateUtilComponent {
 
   static adicionarDias(qtdDias: number, data: Date): Date {
 
@@ -45,7 +45,7 @@ export class DateUtilComponent{
     return inicio.replace('T00:00:00-0400', '');
   }
 
-  static setarDataInicialCalendario(exercioSelecionado: string) {
+  static setarDataInicialCalendario(exercioSelecionado: string): Date {
     const today = new Date();
     const tomorrow = new Date(today);
     if (today.getFullYear() < parseInt(exercioSelecionado, 10)) {
@@ -58,9 +58,9 @@ export class DateUtilComponent{
     }
   }
 
-  //retorna uma data equivalente ao dia 01 do próximo mês
-  static getDataProximoMes() {
-    const numeroDoMesSeguinte = (new Date().getMonth() + 1 ) % 12 + 1;
+  /*retorna uma data equivalente ao dia 01 do próximo mês*/
+  static getDataProximoMes(): Date {
+    const numeroDoMesSeguinte = (new Date().getMonth() + 1) % 12 + 1;
     const data = new Date();
     data.setMonth(numeroDoMesSeguinte - 1);
     data.setDate(1);
@@ -68,27 +68,31 @@ export class DateUtilComponent{
     return data;
   }
 
-  static convertToJavaDate(d: Date) {
+  static convertToJavaDate(d: Date): string {
     return d.getFullYear() + '-' + (d.getUTCMonth() + 1) + '-' + d.getDate() + 'T00:00:00-0400';
   }
 
-  static checaSeDataPosterior(mes: string, ano: string) {
+  static checaSeDataPosterior(mes: string, ano: string): boolean {
     const hoje = new Date();
     const data = new Date();
     data.setMonth(parseInt(mes, 10) - 1);
     data.setFullYear(parseInt(ano, 10));
     data.setDate(1);
 
-    if (data < hoje) {
-      return true;
-    } else {
-      return false;
+    return data < hoje ? true : false;
+  }
+
+  static getTotalDiasDoMes(data: Date): number {
+    return new Date(data.getFullYear(), data.getMonth() + 1, 0).getDate();
+  }
+
+  static getHoraFormatada(dataConsulta: Date): string {
+    let horaFormatada: string;
+    if (dataConsulta !== undefined) {
+      const hora = dataConsulta.getHours() < 10 ? '0' + dataConsulta.getHours() : dataConsulta.getHours();
+      const minuto =  dataConsulta.getMinutes() < 10 ? '0' + dataConsulta.getMinutes() : dataConsulta.getMinutes();
+      horaFormatada = hora + ':' + minuto;
     }
+    return horaFormatada;
   }
-
-  static getTotalDiasDoMes(data: Date) {
-    const totalDias = new Date(data.getFullYear(), data.getMonth() + 1, 0).getDate();
-    return totalDias;
-  }
-
 }
