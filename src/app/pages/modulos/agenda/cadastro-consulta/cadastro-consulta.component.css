@@ -58,10 +58,13 @@ html, body {
 
 .btn-vermelho{
   width: 100%;
-  background: #ea0117;
+  background: #f54554;
   color: white;
 }
 
-.teste{
-  width: 50vw;
+.botao-duracao{
+  height: 2em;
+  padding-top: 5px;
+  position: relative;
+  top: 0.5em;
 }

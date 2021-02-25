@@ -187,27 +187,14 @@ export class CalendarioAgendaComponent implements OnInit, AfterContentChecked {
     this.showDialog(segment);
   }
 
-  private reloader(): void {
+  /*private reloader(): void {
     setTimeout(() => this.reload = false);
     setTimeout(() => this.reload = true);
-  }
+  }*/
 
   eventClicked(action: string, event: CalendarSchedulerEvent): void {
     console.log('eventClicked Action', action);
     console.log('eventClicked Event', event);
-  }
-
-  openDialog(segment: SchedulerViewHourSegment): void {
-    const dialogRef = this.dialog.open(DialogAgendaConsultaComponent, {
-      width: '600px',
-      data: {data: segment.date}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.createEvent();
-      this.reloader();
-      console.log('The dialog was closed');
-    });
   }
 
   eventTimesChanged({event, newStart, newEnd}: SchedulerEventTimesChangedEvent): void {
@@ -221,13 +208,12 @@ export class CalendarioAgendaComponent implements OnInit, AfterContentChecked {
 
   createEvent(event?: CalendarSchedulerEvent): void {
     const evento: CalendarSchedulerEvent = new CalendarioEvento();
-
-    evento.start = new Date('Tue Feb 23 2021 18:00:00 GMT-0400');
-    evento.end = new Date('Tue Feb 23 2021 20:00:00 GMT-0400');
+    evento.start = new Date('Tue Feb 25 2021 18:00:00 GMT-0400');
+    evento.end = new Date('Tue Feb 25 2021 20:00:00 GMT-0400');
     evento.content = 'teste';
     evento.title = 'testando';
     event ? this.eventsAlterados.push(event) : this.eventsAlterados.push(evento);
-    this.dateOrViewChanged();
+    this.refresh.next();
 
   }
 

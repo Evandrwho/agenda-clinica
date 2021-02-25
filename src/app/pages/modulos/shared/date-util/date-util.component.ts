@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import * as moment from 'moment';
+import {Timestamp} from "rxjs";
 
 @Component({
   selector: 'app-date-util',
@@ -90,9 +91,24 @@ export class DateUtilComponent {
     let horaFormatada: string;
     if (dataConsulta !== undefined) {
       const hora = dataConsulta.getHours() < 10 ? '0' + dataConsulta.getHours() : dataConsulta.getHours();
-      const minuto =  dataConsulta.getMinutes() < 10 ? '0' + dataConsulta.getMinutes() : dataConsulta.getMinutes();
+      const minuto = dataConsulta.getMinutes() < 10 ? '0' + dataConsulta.getMinutes() : dataConsulta.getMinutes();
       horaFormatada = hora + ':' + minuto;
     }
     return horaFormatada;
+  }
+
+  static adicionaHora(dataConsulta: Date, qtdHora: number, qdtMinutos: number): Date {
+    const horaRetorno = new Date(dataConsulta.getTime() + this.toTimestamp(qtdHora, qdtMinutos));
+    console.log(horaRetorno);
+    return undefined;
+  }
+
+
+  private static toTimestamp(hora: number, minuto: number): number {
+    const dt = new Date();
+    dt.setHours(hora);
+    dt.setMinutes(minuto);
+    dt.setSeconds(0);
+    return dt.getTime();
   }
 }

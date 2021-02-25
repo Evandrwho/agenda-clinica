@@ -21,7 +21,7 @@
   </div>
 
   <div class="row">
-    <div class="input-field input-group col s6">
+    <div class="input-field input-group col-lg-4 s4">
       <input id="dataConsulta" class="form-control" type="text" bsDatepicker
              [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMMM, YYYY',
               containerClass: 'theme-dark-blue',adaptivePosition:true }"
@@ -29,9 +29,18 @@
       >
       <label for="dataConsulta" class="active">Data Consulta</label>
     </div>
-    <div class="input-field col s6">
+    <div class="input-field col-lg-4 s4">
       <input id="time" type="time" placeholder="" [value]="horaConsulta" (change)="writeTime(time.value)" #time/>
-      <label for="time">Horário da Consulta</label>
+      <label for="time">Horário</label>
+    </div>
+
+    <div class="input-field col s1">
+      <button pButton  class="col-lg-2 botao-duracao"><i class="pi pi-plus"></i></button>
+      <input  class="col-lg-3 text-center" id="hora" placeholder="" [value]="duracao"/>
+      :
+      <input  class="col-lg-3 text-center" id="minuto" placeholder="" [value]="duracao"/>
+      <button pButton type="button" class="col-lg-2 botao-duracao btn-vermelho"><i class="pi pi-minus"></i></button>
+
     </div>
   </div>
 

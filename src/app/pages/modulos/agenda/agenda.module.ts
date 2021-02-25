@@ -16,7 +16,14 @@ import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { AgendaComponent } from './agenda/agenda.component';
 import { ListaEventosDiaComponent } from './lista-eventos-dia/lista-eventos-dia.component';
 import {MatTableModule} from '@angular/material/table';
-import {ButtonModule, DialogModule, ScrollPanelModule, TableModule, VirtualScrollerModule} from 'primeng';
+import {
+  ButtonModule,
+  DialogModule,
+  InputTextModule,
+  ScrollPanelModule,
+  TableModule,
+  VirtualScrollerModule
+} from 'primeng';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -25,6 +32,7 @@ import { SchedulerModule } from 'angular-calendar-scheduler';
 
 import localePt from '@angular/common/locales/pt';
 import {SharedModule} from '../shared/shared.module';
+import {TimepickerModule} from 'ngx-bootstrap/timepicker';
 
 registerLocaleData(localePt);
 
@@ -43,7 +51,8 @@ registerLocaleData(localePt);
     MatInputModule,
     MatButtonModule,
     ScrollPanelModule,
-    ListaEventosDiaComponent
+    ListaEventosDiaComponent,
+    TimepickerModule
 
   ],
   imports: [
@@ -68,7 +77,8 @@ registerLocaleData(localePt);
     FormsModule,
     DialogModule,
     ButtonModule,
-    SharedModule
+    SharedModule,
+    InputTextModule
   ],
   providers: [
     BsLocaleService,
