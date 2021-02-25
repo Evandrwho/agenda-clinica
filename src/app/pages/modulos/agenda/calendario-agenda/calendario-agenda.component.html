@@ -89,9 +89,11 @@
   </calendar-scheduler-view>
 </div>
 
-<p-dialog header="Agendar consulta" [(visible)]="display" [modal]="true" (onHide)="createEvent()">
+<p-dialog header="Agendar consulta" [(visible)]="display" [modal]="true">
   <div class="mydialog">
-    <app-cadastro-consulta [dataConsulta]="dataHoraSelecionada"></app-cadastro-consulta>
+    <app-cadastro-consulta [dataConsulta]="dataHoraSelecionada"
+                           (cancelado)="closeDialog()"
+                           (eventoCriado)="createEvent($event)"></app-cadastro-consulta>
   </div>
 </p-dialog>
 

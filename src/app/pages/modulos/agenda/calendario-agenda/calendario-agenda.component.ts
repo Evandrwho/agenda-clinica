@@ -131,6 +131,11 @@ export class CalendarioAgendaComponent implements OnInit, AfterContentChecked {
     this.display = true;
   }
 
+  closeDialog(): void {
+   /* this.dataHoraSelecionada = null*/
+    this.display = false;
+  }
+
   viewDaysOptionChanged(viewDays: any): void {
     console.log('viewDaysOptionChanged', viewDays);
     this.calendarScheduler.setViewDays(viewDays);
@@ -194,7 +199,7 @@ export class CalendarioAgendaComponent implements OnInit, AfterContentChecked {
 
   eventClicked(action: string, event: CalendarSchedulerEvent): void {
     console.log('eventClicked Action', action);
-    console.log('eventClicked Event', event);
+    console.log(event);
   }
 
   eventTimesChanged({event, newStart, newEnd}: SchedulerEventTimesChangedEvent): void {
@@ -206,18 +211,21 @@ export class CalendarioAgendaComponent implements OnInit, AfterContentChecked {
     this.refresh.next();
   }
 
-  createEvent(event?: CalendarSchedulerEvent): void {
+  createEvent(event: any): void {
+    console.log(event);/*
     const evento: CalendarSchedulerEvent = new CalendarioEvento();
     evento.start = new Date('Tue Feb 25 2021 18:00:00 GMT-0400');
     evento.end = new Date('Tue Feb 25 2021 20:00:00 GMT-0400');
     evento.content = 'teste';
     evento.title = 'testando';
-    event ? this.eventsAlterados.push(event) : this.eventsAlterados.push(evento);
+    event ? this.events.push(event) : this.eventsAlterados.push(evento);*/
+    event ? this.events.push(event) : console.log('Não foi possivel criar o evento');
+    this.closeDialog();
     this.refresh.next();
 
   }
 
   ngAfterContentChecked(): void {
-    this.events = this.eventsAlterados;
+    //this.events = this.eventsAlterados;
   }
 }

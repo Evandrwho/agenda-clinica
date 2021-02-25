@@ -98,17 +98,26 @@ export class DateUtilComponent {
   }
 
   static adicionaHora(dataConsulta: Date, qtdHora: number, qdtMinutos: number): Date {
+    console.log(dataConsulta);
     const horaRetorno = new Date(dataConsulta.getTime() + this.toTimestamp(qtdHora, qdtMinutos));
     console.log(horaRetorno);
-    return undefined;
+    return horaRetorno;
+  }
+  static subtraiHora(dataConsulta: Date, qtdHora: number, qdtMinutos: number): Date {
+    console.log(dataConsulta);
+    const horaRetorno = new Date(dataConsulta.getTime() - this.toTimestamp(qtdHora, qdtMinutos));
+    console.log(horaRetorno);
+    return horaRetorno;
   }
 
 
+
   private static toTimestamp(hora: number, minuto: number): number {
-    const dt = new Date();
+    const dt = (hora*60 + minuto)*60*1000;
+    /*
     dt.setHours(hora);
     dt.setMinutes(minuto);
-    dt.setSeconds(0);
-    return dt.getTime();
+    dt.setSeconds(0);*/
+    return dt;
   }
 }

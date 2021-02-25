@@ -2,52 +2,60 @@
 <form action="#" [formGroup]="formAgendaCosulta">
   <div class="row">
     <div class="input-field col s12">
-      <input id="nome" type="text" class="validate">
+      <input id="procedimento" type="text" class="validate" formControlName="procedimento">
+      <label class="active" for="procedimento">Nome</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="nome" type="text" class="validate" formControlName="nome">
       <label class="active" for="nome">Nome</label>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s12">
-      <input id="sobrenome" type="text" class="validate">
+      <input id="sobrenome" type="text" class="validate" formControlName="sobrenome">
       <label class="active" for="sobrenome">Sobrenome</label>
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12">
-      <input id="telefone" type="text" class="validate">
+      <input id="telefone" type="text" class="validate" formControlName="telefone">
       <label class="active" for="telefone">Telefone</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field input-group col-lg-4 s4">
+    <div class="input-field input-group col s4">
       <input id="dataConsulta" class="form-control" type="text" bsDatepicker
-             [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMMM, YYYY',
-              containerClass: 'theme-dark-blue',adaptivePosition:true }"
-      [ngModel]="dataConsulta" [ngModelOptions]="{standalone: true}"
+             [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMMM, YYYY - HH:mm',
+              containerClass: 'theme-dark-blue',adaptivePosition:true }" formControlName="dataConsulta"
       >
       <label for="dataConsulta" class="active">Data Consulta</label>
     </div>
-    <div class="input-field col-lg-4 s4">
+    <div class="input-field col s4">
       <input id="time" type="time" placeholder="" [value]="horaConsulta" (change)="writeTime(time.value)" #time/>
       <label for="time">Horário</label>
     </div>
 
     <div class="input-field col s1">
-      <button pButton  class="col-lg-2 botao-duracao"><i class="pi pi-plus"></i></button>
-      <input  class="col-lg-3 text-center" id="hora" placeholder="" [value]="duracao"/>
-      :
-      <input  class="col-lg-3 text-center" id="minuto" placeholder="" [value]="duracao"/>
-      <button pButton type="button" class="col-lg-2 botao-duracao btn-vermelho"><i class="pi pi-minus"></i></button>
-
+      <button pButton  class="col-lg-2 botao-duracao"
+      (click)="add30min(horas.value)"><i class="pi pi-plus"></i></button>
+      <input #horas class="col-lg-7 text-center"
+              type="time" id="duracao" placeholder="" [(ngModel)]="duracao" [ngModelOptions]="{standalone: true}"/>
+      <label class="col-lg-12" for="duracao">Duração</label>
+      <button pButton type="button" class="col-lg-2 botao-duracao btn-vermelho"
+              (click)="remove30min(horas.value)"><i class="pi pi-minus"></i></button>
     </div>
+    <pre class="col-lg-12">{{formAgendaCosulta.value | json}}</pre>
+    <pre class="col-lg-12">{{evento | json}}</pre>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <button mat-button class="btn-azul col-md-6">Finalizar Agendamento</button>
-      <button mat-button class="btn-vermelho col-md-6">Cancelar</button>
+      <button mat-button class="btn-azul col-md-6" (click)="criarEvento()">Finalizar Agendamento</button>
+      <button mat-button class="btn-vermelho col-md-6" (click)="cancelar()">Cancelar</button>
     </div>
   </div>
 

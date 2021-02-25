@@ -63,6 +63,7 @@ html, body {
 }
 
 .botao-duracao{
+  margin: 0 3px;
   height: 2em;
   padding-top: 5px;
   position: relative;
